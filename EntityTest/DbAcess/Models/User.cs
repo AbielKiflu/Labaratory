@@ -14,12 +14,16 @@ namespace DbAcess.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
+
+        [Required]
+        public string UserName { get; set; }
+
         [Required]
         public string Email { get; set; }
 
         [Required]
         [MaxLength(50)]
-        public string Password { get; set; }
+        public string PasswordHash { get; set; }
 
         [Required]
         [MaxLength(50)]
@@ -28,6 +32,8 @@ namespace DbAcess.Models
 
         [MaxLength(15)]
         public string Telephone { get; set; }
+
+        public bool EmailConfirmed { get; set; } = false;
 
         [Required]
         public List<Address> Addresses { get; set; } = new List<Address>();

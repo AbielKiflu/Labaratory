@@ -20,7 +20,7 @@ namespace EntityTest.Controllers
 
         public IActionResult Index()
         {
-            var model = _db.Users.ToList();
+            var model = _db.Users.Include(a=>a.Addresses).ToList();
 
             return View(model);
         }
