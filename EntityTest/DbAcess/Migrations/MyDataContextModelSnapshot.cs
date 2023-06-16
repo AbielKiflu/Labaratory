@@ -77,13 +77,13 @@ namespace DbAcess.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<bool>("EmailConfirmed")
+                    b.Property<bool?>("EmailConfirmed")
                         .HasColumnType("boolean");
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasMaxLength(70)
+                        .HasColumnType("character varying(70)");
 
                     b.Property<string>("Salt")
                         .IsRequired()
@@ -91,7 +91,6 @@ namespace DbAcess.Migrations
                         .HasColumnType("character varying(50)");
 
                     b.Property<string>("Telephone")
-                        .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("character varying(15)");
 

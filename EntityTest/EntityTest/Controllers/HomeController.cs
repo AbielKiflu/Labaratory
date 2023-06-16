@@ -6,6 +6,8 @@ using System.Diagnostics;
 using System.Linq;
 using EntityTest.Helper;
 using EntityTest.Helper;
+using DbAcess.Models;
+using System.Runtime.CompilerServices;
 
 namespace EntityTest.Controllers
 {
@@ -26,10 +28,21 @@ namespace EntityTest.Controllers
         public IActionResult Index()
         {
             var model = _db.Users.Include(a=>a.Addresses).ToList();
-            
+            string salt = new Auth().salt;
+            _db.Users.Add(new User
+            {
+                UserName = "Estifanos",
+                Email ="Estif@gmail.com",
+                PasswordHash = Auth.HashPassword("123", salt),
+                Salt = salt,
+            });
+            _logger.LogInformation("Test Abi");
+            _db.SaveChanges();
             return View(model);
         }
 
+
+ 
 
   
 

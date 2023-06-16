@@ -31,11 +31,11 @@ namespace DbAcess.Models
 
 
         [MaxLength(15)]
-        public string Telephone { get; set; }
+        public string? Telephone { get; set; }
 
-        public bool EmailConfirmed { get; set; } = false;
+        public bool? EmailConfirmed { get; set; } = false;
 
-        [Required]
-        public List<Address> Addresses { get; set; } = new List<Address>();
+     
+        public List<Address>? Addresses { get; set; } = new List<Address>();
     }
 }
