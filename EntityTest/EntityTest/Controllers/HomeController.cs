@@ -1,27 +1,32 @@
-﻿using EntityTest.Models;
+﻿using DbAcess.DataAcess;
+using EntityTest.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Linq;
 
 namespace EntityTest.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly MyDataContext _db;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, MyDataContext db)
         {
             _logger = logger;
+            _db = db;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var model = _db.Users.ToList();
+
+            return View(model);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+
+  
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
