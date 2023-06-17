@@ -8,6 +8,7 @@ using EntityTest.Helper;
 using EntityTest.Helper;
 using DbAcess.Models;
 using System.Runtime.CompilerServices;
+using Microsoft.Extensions.Logging;
 
 namespace EntityTest.Controllers
 {
@@ -20,24 +21,18 @@ namespace EntityTest.Controllers
         {
             _logger = logger;
             Auth auth = new Auth();
-            logger.LogInformation("Abiel");
-            logger.LogInformation(Auth.HashPassword("Abule", auth.salt).Length.ToString());
             _db = db;
         }
 
         public IActionResult Index()
         {
+            HttpContext.Response.Headers["set-cookie"] = "auth=Abule;SameSite=None;secure";
+            _logger.LogInformation("Abiel "  );
+            ViewData["Test"] = HttpContext.Response.Headers["set-cookie"];
+     
             var model = _db.Users.Include(a=>a.Addresses).ToList();
             string salt = new Auth().salt;
-            _db.Users.Add(new User
-            {
-                UserName = "Estifanos",
-                Email ="Estif@gmail.com",
-                PasswordHash = Auth.HashPassword("123", salt),
-                Salt = salt,
-            });
-            _logger.LogInformation("Test Abi");
-            _db.SaveChanges();
+            
             return View(model);
         }
 
