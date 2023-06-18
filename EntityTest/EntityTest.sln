@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbAcess", "DbAcess\DbAcess.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStruc", "DataStruc\DataStruc.csproj", "{F1EBA08C-E4CE-4CC4-8D93-184F682139FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{A19775BB-1D48-4D06-AE25-0D45E5782608}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F1EBA08C-E4CE-4CC4-8D93-184F682139FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1EBA08C-E4CE-4CC4-8D93-184F682139FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1EBA08C-E4CE-4CC4-8D93-184F682139FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A19775BB-1D48-4D06-AE25-0D45E5782608}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A19775BB-1D48-4D06-AE25-0D45E5782608}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A19775BB-1D48-4D06-AE25-0D45E5782608}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A19775BB-1D48-4D06-AE25-0D45E5782608}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -31,4 +31,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+app.MapGet("/test", () => "Hello Abi world");
+
 app.Run();
