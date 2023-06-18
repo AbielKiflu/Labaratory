@@ -1,14 +1,9 @@
 ﻿using DbAcess.DataAcess;
+using EntityTest.Helper;
 using EntityTest.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
-using System.Linq;
-using EntityTest.Helper;
-using EntityTest.Helper;
-using DbAcess.Models;
-using System.Runtime.CompilerServices;
-using Microsoft.Extensions.Logging;
 
 namespace EntityTest.Controllers
 {
@@ -27,19 +22,19 @@ namespace EntityTest.Controllers
         public IActionResult Index()
         {
             HttpContext.Response.Headers["set-cookie"] = "auth=Abule;SameSite=None;secure";
-            _logger.LogInformation("Abiel "  );
+            _logger.LogInformation("Abiel ");
             ViewData["Test"] = HttpContext.Response.Headers["set-cookie"];
-     
-            var model = _db.Users.Include(a=>a.Addresses).ToList();
+
+            var model = _db.Users.Include(a => a.Addresses).ToList();
             string salt = new Auth().salt;
-            
+
             return View(model);
         }
 
 
- 
 
-  
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
