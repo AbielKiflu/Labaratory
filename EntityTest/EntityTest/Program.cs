@@ -1,6 +1,7 @@
 using DbAcess.DataAcess;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-
+using DbAcess.Models;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,12 +26,22 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+
+app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapGet("/test", () =>
+{
+    var hasher=new PasswordHasher<User>();
+    var hashed = hasher.HashPassword(null, "Abi");
+    return hashed + " => " + hasher.VerifyHashedPassword(null,hashed,"Abi");
+
+});
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-app.MapGet("/test", () => "Hello Abi world");
+
 
 app.Run();

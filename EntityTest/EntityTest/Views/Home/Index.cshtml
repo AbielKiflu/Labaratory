@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DbAcess.Models.User>
+﻿ 
 
 @{
     ViewData["Title"] = "Users";
@@ -8,20 +8,8 @@
     <h1 class="display-4">Welcome</h1>
      
     <div>
-        <h4>@ViewData["Test"]</h4>
-        
-        @foreach (var item in Model)
-        {
-
-          <div class="row">
-                <div class="column">  @Html.DisplayFor(modelItem => item.Email)</div>
-                <div class="column">  @Html.DisplayFor(modelItem => item.Telephone)</div>
-                <div class="column">  @Html.DisplayFor(modelItem => item.Addresses.FirstOrDefault().City)</div>
-                <hr/>
-          </div>
+        <h4>@ViewData["Title"]</h4>
        
-            
-        }
     </div>
 
 </div>
