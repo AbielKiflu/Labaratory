@@ -20,10 +20,6 @@ namespace DbAcess.Models
         [MaxLength(70)]
         public string PasswordHash { get; set; }
 
-        [Required]
-        [MaxLength(50)]
-        public string Salt { get; set; }
-
 
         [MaxLength(15)]
         public string? Telephone { get; set; }

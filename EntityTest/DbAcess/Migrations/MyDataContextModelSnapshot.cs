@@ -62,7 +62,7 @@ namespace DbAcess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Addresses");
+                    b.ToTable("Addresses", (string)null);
                 });
 
             modelBuilder.Entity("DbAcess.Models.User", b =>
@@ -85,11 +85,6 @@ namespace DbAcess.Migrations
                         .HasMaxLength(70)
                         .HasColumnType("character varying(70)");
 
-                    b.Property<string>("Salt")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
                     b.Property<string>("Telephone")
                         .HasMaxLength(15)
                         .HasColumnType("character varying(15)");
@@ -100,7 +95,7 @@ namespace DbAcess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("DbAcess.Models.Address", b =>
