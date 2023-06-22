@@ -24,7 +24,7 @@ namespace DbAcess.Models
 
         [Required]
         [MaxLength(50)]
-        public string street { get; set; }
+        public string Street { get; set; }
 
 
         [MaxLength(10)]
