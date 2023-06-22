@@ -82,8 +82,7 @@ namespace DbAcess.Migrations
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
-                        .HasMaxLength(70)
-                        .HasColumnType("character varying(70)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Telephone")
                         .HasMaxLength(15)

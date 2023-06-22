@@ -31,13 +31,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapGet("/test", () =>
-{
-    var hasher=new PasswordHasher<User>();
-    var hashed = hasher.HashPassword(null, "Abi");
-    return hashed + " => " + hasher.VerifyHashedPassword(null,hashed,"Abi");
-
-});
+ 
 
 app.MapControllerRoute(
     name: "default",

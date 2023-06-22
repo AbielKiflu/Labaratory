@@ -1,20 +1,20 @@
-﻿using DbAcess.DataAcess;
-using EntityTest.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
+﻿using Microsoft.AspNetCore.Mvc; 
 using EntityTest.ViewModels.Account;
+using DbAcess.Models;
+using Microsoft.AspNetCore.Identity;
+using DbAcess.DataAcess;
 
 namespace EntityTest.Controllers
 {
     public class AccountController : Controller
     {
         private readonly ILogger<AccountController> _logger;
+        private readonly MyDataContext _db;
 
-        public AccountController(ILogger<AccountController> logger)
+        public AccountController(ILogger<AccountController> logger, MyDataContext db)
         {
             _logger = logger;
-
+            _db = db;
         }
 
         [HttpGet]
@@ -33,7 +33,21 @@ namespace EntityTest.Controllers
         [HttpPost]
         public IActionResult Register(UserVM user)
         {
-            Console.WriteLine(user.Email);
+
+            // hash the password
+            var newUser = new User
+            {
+                Email = user.Email,
+                UserName = user.Email.Split("@")[0]
+            };
+
+            var hashed = new PasswordHasher<User>().HashPassword(newUser, user.PasswordHash);
+            
+            newUser.PasswordHash = hashed;
+
+            _db.Add(newUser);
+            _db.SaveChanges();
+
             return View();
         }
 
