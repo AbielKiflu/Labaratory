@@ -23,6 +23,15 @@ namespace EntityTest.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Index(UserVM user)
+        {
+            var pwd = _db.Users.Find(9)?.PasswordHash;
+          
+            var test = new PasswordHasher<User>().VerifyHashedPassword(null,pwd, user.Password);
+            return View();
+        }
+
 
         [HttpGet]
         public IActionResult Register()
@@ -41,7 +50,7 @@ namespace EntityTest.Controllers
                 UserName = user.Email.Split("@")[0]
             };
 
-            var hashed = new PasswordHasher<User>().HashPassword(newUser, user.PasswordHash);
+            var hashed = new PasswordHasher<User>().HashPassword(null, user.Password);
             
             newUser.PasswordHash = hashed;
 

@@ -1,4 +1,5 @@
-﻿ 
+﻿@using EntityTest.ViewModels.Account;
+@model UserVM;
 
 @{
     ViewData["Title"] = "Login";
@@ -12,15 +13,15 @@
                 <div class="col-lg-4 col-md-6 col-sm-8">
                     <div class="card">
                         <div class="card-body">
-                             
-                            <form>
+
+                        <form asp-controller="Account" asp-action="Index" method="post">
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                                <input asp-for="Email"   class="form-control" id="email" placeholder="Enter your email">
                                 </div>
                                 <div class="mb-3">
                                     <label for="password" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                                <input asp-for="Password" class="form-control" id="password" placeholder="Enter your password">
                                 </div>
                                 <div class="d-grid gap-2">
                                     <button type="submit" class="btn btn-primary">Login</button>
