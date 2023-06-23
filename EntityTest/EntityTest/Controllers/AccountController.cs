@@ -38,7 +38,7 @@ namespace EntityTest.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(UserVM user)
         {
-            var newUser = _db.Users.Find(15);
+            var newUser = _db.Users.Find(16);
             if (newUser != null)
             {
                
@@ -48,11 +48,10 @@ namespace EntityTest.Controllers
                     // let the user login
                     var claims = new List<Claim>();
                     claims.Add(new Claim("email", newUser.Email)); 
-                    var identity = new ClaimsIdentity(claims);
-                   
-                    HttpContext.User = new ClaimsPrincipal(identity);
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, HttpContext.User);
-                      
+                    var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                      await HttpContext.SignInAsync(new ClaimsPrincipal(identity));
+
                 }
                 else
                 {
@@ -90,11 +89,7 @@ namespace EntityTest.Controllers
             return View();
         }
 
- 
-     
-
-
-
+  
 
 
     }
