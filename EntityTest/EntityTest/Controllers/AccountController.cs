@@ -10,11 +10,13 @@ namespace EntityTest.Controllers
     {
         private readonly ILogger<AccountController> _logger;
         private readonly MyDataContext _db;
+        private readonly IPasswordHasher<User> _hasher;
 
-        public AccountController(ILogger<AccountController> logger, MyDataContext db)
+        public AccountController(ILogger<AccountController> logger, MyDataContext db, IPasswordHasher<User> hasher)
         {
             _logger = logger;
             _db = db;
+            _hasher = hasher;
         }
 
         [HttpGet]
@@ -26,9 +28,10 @@ namespace EntityTest.Controllers
         [HttpPost]
         public IActionResult Index(UserVM user)
         {
-            var pwd = _db.Users.Find(9)?.PasswordHash;
-          
-            var test = new PasswordHasher<User>().VerifyHashedPassword(null,pwd, user.Password);
+            var newUser = _db.Users.Find(14);
+             
+            var test = _hasher.VerifyHashedPassword(null, newUser.PasswordHash, user.Password);
+             
             return View();
         }
 
@@ -50,10 +53,8 @@ namespace EntityTest.Controllers
                 UserName = user.Email.Split("@")[0]
             };
 
-            var hashed = new PasswordHasher<User>().HashPassword(null, user.Password);
-            
-            newUser.PasswordHash = hashed;
-
+            newUser.PasswordHash = _hasher.HashPassword(null, user.Password);
+             
             _db.Add(newUser);
             _db.SaveChanges();
 

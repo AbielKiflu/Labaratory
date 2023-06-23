@@ -1,13 +1,13 @@
 using DbAcess.DataAcess;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using DbAcess.Models;
+using Microsoft.AspNetCore.Identity;
 //using DbAcess.DataAcess;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
-
+builder.Services.AddSingleton<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<MyDataContext>(options =>
@@ -29,7 +29,7 @@ app.UseRouting();
 
 
 app.UseAuthentication();
-app.UseAuthorization();
+//app.UseAuthorization();
 
  
 
