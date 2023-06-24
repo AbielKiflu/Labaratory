@@ -38,6 +38,7 @@ namespace EntityTest.Controllers
         // an action that processes the login credential ...
         [HttpPost]
         [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(UserVM user)
         {
             var newUser = _db.Users.Find(16);
@@ -51,9 +52,7 @@ namespace EntityTest.Controllers
                     var claims = new List<Claim>();
                     claims.Add(new Claim("email", newUser.Email)); 
                     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
                     await HttpContext.SignInAsync(new ClaimsPrincipal(identity));
-                    await HttpContext.SignOutAsync();
                 }
                 else
                 {
@@ -65,12 +64,12 @@ namespace EntityTest.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpGet]
         [AllowAnonymous]
-        public  string Logout()
+        public async Task<IActionResult> Logout()
         {
-            //await HttpContext.SignOutAsync();
-            return "Loggedout";
+            await HttpContext.SignOutAsync();
+            return View();
         }
 
 
@@ -81,6 +80,7 @@ namespace EntityTest.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Register(UserVM user)
         {
 

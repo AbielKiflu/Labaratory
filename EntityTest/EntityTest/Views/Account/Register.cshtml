@@ -13,9 +13,8 @@
             <div class="col-lg-4 col-md-6 col-sm-8">
                 <div class="card">
                     <div class="card-body">
-
-
                         <form asp-controller="Account" asp-action="Register" method="post" >
+                            @Html.AntiForgeryToken()
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
                                     <input asp-for="Email"   class="form-control" id="email" placeholder="Enter your email">
