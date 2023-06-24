@@ -6,6 +6,7 @@ using DbAcess.DataAcess;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EntityTest.Controllers
 {
@@ -36,6 +37,7 @@ namespace EntityTest.Controllers
 
         // an action that processes the login credential ...
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Index(UserVM user)
         {
             var newUser = _db.Users.Find(16);
@@ -50,8 +52,8 @@ namespace EntityTest.Controllers
                     claims.Add(new Claim("email", newUser.Email)); 
                     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-                      await HttpContext.SignInAsync(new ClaimsPrincipal(identity));
-
+                    await HttpContext.SignInAsync(new ClaimsPrincipal(identity));
+                    await HttpContext.SignOutAsync();
                 }
                 else
                 {
@@ -61,6 +63,14 @@ namespace EntityTest.Controllers
             }
             
             return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public  string Logout()
+        {
+            //await HttpContext.SignOutAsync();
+            return "Loggedout";
         }
 
 
@@ -74,19 +84,27 @@ namespace EntityTest.Controllers
         public IActionResult Register(UserVM user)
         {
 
-            // hash the password
-            var newUser = new User
+            if (ModelState.IsValid)
             {
-                Email = user.Email,
-                UserName = user.Email.Split("@")[0]
-            };
+                // hash the password
+                var newUser = new User
+                {
+                    Email = user.Email,
+                    UserName = user.Email.Split("@")[0]
+                };
 
-            newUser.PasswordHash = _hasher.HashPassword(null, user.Password);
-             
-            _db.Add(newUser);
-            _db.SaveChanges();
+                newUser.PasswordHash = _hasher.HashPassword(null, user.Password);
 
-            return View();
+                _db.Add(newUser);
+                _db.SaveChanges();
+
+                return View();
+            }
+            else
+            {
+                return NotFound();
+            }
+
         }
 
   
