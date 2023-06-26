@@ -60,12 +60,14 @@ namespace EntityTest.Controllers
                 }
 
             }
-            
+ 
+
+
             return View();
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();

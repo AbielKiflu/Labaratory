@@ -25,7 +25,9 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 {
     options.Cookie.Name = "UserCookie";
     options.Cookie.IsEssential= true;
-    options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+    options.Cookie.HttpOnly = true;
+    options.ExpireTimeSpan = TimeSpan.FromSeconds(10); 
+
     options.LoginPath = "/Account";
     options.LogoutPath = "/Account/Logout";
     
@@ -37,7 +39,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("", policy => policy.RequireClaim("Test"));
+    options.AddPolicy("Admin", policy => policy.RequireClaim("email"));
 });
 
 
