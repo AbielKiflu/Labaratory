@@ -32,6 +32,11 @@ builder.Services.AddAntiforgery(options =>
 });
 
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("", policy => policy.RequireClaim("Test"));
+});
+
 
 builder.Services.AddDbContext<MyDataContext>(options =>
 {
