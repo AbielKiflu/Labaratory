@@ -11,25 +11,28 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddControllersWithViews();
 
- 
-
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
-{
-    options.Cookie.Name = "UserCookie";
-    options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
-    options.LoginPath = "/Account";
-    options.LogoutPath = "/Account/Logout";
-
-});
-
 builder.Services.AddAntiforgery(options =>
 {
     options.Cookie.Name = "AntiforgeryCookie";
     options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
     options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
     options.HeaderName = "X-CSRF-TOKEN";
 
 });
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+{
+    options.Cookie.Name = "UserCookie";
+    options.Cookie.IsEssential= true;
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+    options.LoginPath = "/Account";
+    options.LogoutPath = "/Account/Logout";
+    
+
+});
+
+
 
 
 builder.Services.AddAuthorization(options =>
