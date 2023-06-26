@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using DbAcess.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.Extensions.Options;
 //using DbAcess.DataAcess;
 
 
