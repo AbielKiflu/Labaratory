@@ -1,30 +1,41 @@
-﻿using System;
+﻿using Practice;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
 namespace Practice
 {
+
+
     public class Tasking
     {
-
-        public List<string> People { get; set; }
-
-
-        public Tasking(List<string> people) { 
-            this.People = people;
-        }
-
-
-        public void ListPeople()
+         
+        public async Task LongTask()
         {
-            foreach (var person in this.People)
+            short counter = 0;
+            while (counter < short.MaxValue)
             {
-                Console.WriteLine(person);
+                await Task.Delay(1000);
+                Console.WriteLine(counter.ToString());
+                counter++;
             }
+  
         }
+
+
+
+   
 
 
     }
+
+   
+
 }
+
+
+
