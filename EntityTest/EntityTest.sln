@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityTest", "EntityTest\En
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbAcess", "DbAcess\DbAcess.csproj", "{571724FD-66FC-4177-9304-FB87877DCD29}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practice", "Practice\Practice.csproj", "{4770A06F-FEF0-426D-B346-190168E627A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{571724FD-66FC-4177-9304-FB87877DCD29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{571724FD-66FC-4177-9304-FB87877DCD29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{571724FD-66FC-4177-9304-FB87877DCD29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4770A06F-FEF0-426D-B346-190168E627A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4770A06F-FEF0-426D-B346-190168E627A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4770A06F-FEF0-426D-B346-190168E627A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4770A06F-FEF0-426D-B346-190168E627A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
