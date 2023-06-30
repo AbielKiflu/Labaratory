@@ -1,36 +1,37 @@
-﻿using Microsoft.VisualBasic;
-using Practice;
-using System.Dynamic;
-using System.Numerics;
+﻿using MiNET.UI;
+using System;
 
-namespace MyProgram
+
+
+namespace WindowsFormsApp
 {
-    class Program
+    public class MyForm : Form
     {
-        static async Task Main()
+        public MyForm()
         {
-            await ExecuteAsync();
-            
-            Console.WriteLine("Waiting");
+            // Set the properties of the form
+            this.Text = "My Windows Form";
+            this.Width = 400;
+            this.Height = 300;
 
-            Console.ReadKey();
+            // Create and configure controls
+            var button = new Button();
+            button.Text = "Click Me";
+            button.Click += Button_Click;
+
+            // Add controls to the form
+            this.Controls.Add(button);
         }
 
-        static async Task ExecuteAsync()
+        private void Button_Click(object sender, EventArgs e)
         {
-            int counter = 0;
+            MessageBox.Show("Button Clicked!");
+        }
 
-            while (counter < 5)
-            {
-                Console.WriteLine($"Iteration {counter + 1}");
-                await Task.Delay(1000); // Simulating an asynchronous operation with a delay of 1 second
-                counter++;
-            }
-
+        // Entry point of the application
+        public static void Main()
+        {
+            Application.Run(new MyForm());
         }
     }
- 
-
-     
 }
- 
