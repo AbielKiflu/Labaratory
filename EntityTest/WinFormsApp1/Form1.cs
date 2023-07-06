@@ -16,7 +16,7 @@ namespace WinFormsApp1
             var html = await httpClient.GetStringAsync("https://www.google.com/");
             txtInput.Text = "";
             txtInput.Text = html;
-            
+
             //btnMsg.Text = await LooperAsync();
 
         }
@@ -40,14 +40,16 @@ namespace WinFormsApp1
             btnLoop.Enabled = false;
             try
             {
-                await Task.Run(() => {
+                await Task.Run(() =>
+                {
                     for (int i = 0; i < counter; i++)
                     {
                         // Frozen  btnLoop.Text = i.ToString()
                         try
                         {
                             Invoke((Action)(() => btnLoop.Text = i.ToString()));
-                        }catch(Exception ex)
+                        }
+                        catch (Exception ex)
                         {
                             MessageBox.Show(ex.Message);
                         }
@@ -61,5 +63,7 @@ namespace WinFormsApp1
 
 
         }
+
+       
     }
 }

@@ -31,6 +31,7 @@
             txtInput = new TextBox();
             btnMsg = new Button();
             btnLoop = new Button();
+            button1 = new Button();
             SuspendLayout();
             // 
             // txtInput
@@ -61,11 +62,22 @@
             btnLoop.UseVisualStyleBackColor = true;
             btnLoop.Click += btnLoop_Click;
             // 
+            // button1
+            // 
+            button1.Location = new Point(404, 312);
+            button1.Name = "button1";
+            button1.Size = new Size(79, 23);
+            button1.TabIndex = 3;
+            button1.Text = "Looping";
+            button1.UseVisualStyleBackColor = true;
+       
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(button1);
             Controls.Add(btnLoop);
             Controls.Add(btnMsg);
             Controls.Add(txtInput);
@@ -80,5 +92,6 @@
         private TextBox txtInput;
         private Button btnMsg;
         private Button btnLoop;
+        private Button button1;
     }
 }
