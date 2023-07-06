@@ -11,4 +11,5 @@
 
 ### Multi threading
 
-Using Semaphore
+1. Using Semaphore
+2. Using Testing project
