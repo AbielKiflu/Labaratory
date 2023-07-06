@@ -14,6 +14,7 @@ namespace WinFormsApp1
         {
             HttpClient httpClient = new HttpClient();
             var html = await httpClient.GetStringAsync("https://www.google.com/");
+            txtInput.Text = "";
             txtInput.Text = html;
             
             //btnMsg.Text = await LooperAsync();
@@ -35,7 +36,7 @@ namespace WinFormsApp1
 
         private async void btnLoop_Click(object sender, EventArgs e)
         {
-            int counter = 2000;
+            int counter = int.MaxValue;
             btnLoop.Enabled = false;
             try
             {
@@ -43,7 +44,13 @@ namespace WinFormsApp1
                     for (int i = 0; i < counter; i++)
                     {
                         // Frozen  btnLoop.Text = i.ToString()
-                        Invoke((Action)(() => btnLoop.Text = i.ToString()));
+                        try
+                        {
+                            Invoke((Action)(() => btnLoop.Text = i.ToString()));
+                        }catch(Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
                     }
                 });
             }
