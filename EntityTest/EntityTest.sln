@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityTest", "EntityTest\En
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbAcess", "DbAcess\DbAcess.csproj", "{571724FD-66FC-4177-9304-FB87877DCD29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practice", "Practice\Practice.csproj", "{4770A06F-FEF0-426D-B346-190168E627A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Practice", "Practice\Practice.csproj", "{4770A06F-FEF0-426D-B346-190168E627A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsApp1", "WinFormsApp1\WinFormsApp1.csproj", "{79D69327-29B8-47BC-9EBD-6B9DC115EC3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThreadSafeUI", "WinFormsApp1\ThreadSafeUI.csproj", "{79D69327-29B8-47BC-9EBD-6B9DC115EC3E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,3 +1,6 @@
+using System.CodeDom;
+using System.Windows.Forms;
+
 namespace WinFormsApp1
 {
     public partial class Form1 : Form
@@ -12,8 +15,8 @@ namespace WinFormsApp1
             HttpClient httpClient = new HttpClient();
             var html = await httpClient.GetStringAsync("https://www.google.com/");
             txtInput.Text = html;
-            MessageBox.Show("Hi");
-            btnMsg.Text = await LooperAsync();
+            
+            //btnMsg.Text = await LooperAsync();
 
         }
 
@@ -30,6 +33,26 @@ namespace WinFormsApp1
             return counter.ToString();
         }
 
+        private async void btnLoop_Click(object sender, EventArgs e)
+        {
+            int counter = 2000;
+            btnLoop.Enabled = false;
+            try
+            {
+                await Task.Run(() => {
+                    for (int i = 0; i < counter; i++)
+                    {
+                        // Frozen  btnLoop.Text = i.ToString()
+                        Invoke((Action)(() => btnLoop.Text = i.ToString()));
+                    }
+                });
+            }
+            finally
+            {
+                btnLoop.Enabled = true;
+            }
 
+
+        }
     }
 }

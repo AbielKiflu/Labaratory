@@ -30,11 +30,12 @@
         {
             txtInput = new TextBox();
             btnMsg = new Button();
+            btnLoop = new Button();
             SuspendLayout();
             // 
             // txtInput
             // 
-            txtInput.Location = new Point(189, 44);
+            txtInput.Location = new Point(26, 39);
             txtInput.Multiline = true;
             txtInput.Name = "txtInput";
             txtInput.Size = new Size(489, 208);
@@ -42,19 +43,30 @@
             // 
             // btnMsg
             // 
-            btnMsg.Location = new Point(115, 283);
+            btnMsg.Location = new Point(26, 262);
             btnMsg.Name = "btnMsg";
-            btnMsg.Size = new Size(498, 23);
+            btnMsg.Size = new Size(79, 23);
             btnMsg.TabIndex = 1;
             btnMsg.Text = "Show";
             btnMsg.UseVisualStyleBackColor = true;
             btnMsg.Click += btnMsg_Click;
+            // 
+            // btnLoop
+            // 
+            btnLoop.Location = new Point(26, 328);
+            btnLoop.Name = "btnLoop";
+            btnLoop.Size = new Size(79, 23);
+            btnLoop.TabIndex = 2;
+            btnLoop.Text = "Looping";
+            btnLoop.UseVisualStyleBackColor = true;
+            btnLoop.Click += btnLoop_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnLoop);
             Controls.Add(btnMsg);
             Controls.Add(txtInput);
             Name = "Form1";
@@ -67,5 +79,6 @@
 
         private TextBox txtInput;
         private Button btnMsg;
+        private Button btnLoop;
     }
 }
