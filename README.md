@@ -7,3 +7,8 @@
 2. Authentication
 3. Autherizations
 4. Async programming
+
+
+### Multi threading
+
+Using Semaphore
