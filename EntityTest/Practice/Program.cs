@@ -1,37 +1,44 @@
-﻿using MiNET.UI;
-using System;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 
-
-
-namespace WindowsFormsApp
+class Program
 {
-    public class MyForm : Form
+    static int counter = 0;
+    static Semaphore semaphore = new Semaphore(2, 2); // Allowing two concurrent operations
+
+    static void Main()
     {
-        public MyForm()
+        // Create tasks for parallel execution
+        Task[] tasks = new Task[5];
+        for (int i = 0; i < tasks.Length; i++)
         {
-            // Set the properties of the form
-            this.Text = "My Windows Form";
-            this.Width = 400;
-            this.Height = 300;
-
-            // Create and configure controls
-            var button = new Button();
-            button.Text = "Click Me";
-            button.Click += Button_Click;
-
-            // Add controls to the form
-            this.Controls.Add(button);
+            tasks[i] = Task.Run(WorkerMethod);
         }
 
-        private void Button_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Button Clicked!");
-        }
+        // Wait for all tasks to complete
+        Task.WaitAll(tasks);
+        Console.WriteLine(Thread.CurrentThread.ManagedThreadId + "Main thread");
+         
+        Console.WriteLine("All tasks have finished execution");
+        Console.WriteLine("Counter value: " + counter);
+        Console.ReadLine();
+    }
 
-        // Entry point of the application
-        public static void Main()
+    static void WorkerMethod()
+    {
+        semaphore.WaitOne(); // Acquire a semaphore slot
+        try
         {
-            Application.Run(new MyForm());
+            // Simulating some work
+            Console.WriteLine("Thread {0} started", Thread.CurrentThread.ManagedThreadId);
+            Thread.Sleep(1000); // Simulating work by sleeping for 1 second
+            Interlocked.Increment(ref counter); // Atomic increment operation
+            Console.WriteLine("Thread {0} finished", Thread.CurrentThread.ManagedThreadId);
+        }
+        finally
+        {
+            semaphore.Release(); // Release the semaphore slot
         }
     }
 }
